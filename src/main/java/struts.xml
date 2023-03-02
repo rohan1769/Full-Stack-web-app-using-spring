@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<!-- <package name="default" extends="json-default"> -->
+	<package name="default" namespace="/SQL" extends="json-default">
+		<!-- without namespace, It takes '/' -->
+		<action name="fetch" class="com.highradius.Action.Fetch"
+			method="execute">
+			<result name="error">/error.jsp</result>
+			<result type="json">
+				<param name="excludeProperties">
+					mg, start, limit
+				</param>
+				<param name="status">200</param>
+ <param name="headers.a">success</param>
+			</result>
+		</action>
+	 	<action name="add" class="com.highradius.Action.Add" method="execute">
+	 	<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+			<param name="status">200</param>
+ <param name="headers.a">success</param>
+		</action>
+		
+		<action name="edit" class="com.highradius.Action.Edit" method="execute">
+		     <result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+			<param name="status">200</param>
+            <param name="headers.a">success</param>
+		</action>
+		
+		<action name="delete" class="com.highradius.Action.Delete" method="execute">
+		 <result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+			<param name="status">200</param>
+              <param name="headers.a">success</param>
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+		</action>
+	</package>
+</struts>
